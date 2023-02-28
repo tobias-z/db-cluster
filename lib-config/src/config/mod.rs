@@ -45,20 +45,39 @@ mod test {
     use super::*;
 
     #[test]
-    fn something() {
+    fn can_parse_correct_config() {
         let config = parse(
             "
-kind: auth
+kind: Auth
+server: localhost:9999
+user:
+    username: bob
+    password: thebuilder
 ",
         );
 
-        match config {
-            Ok(config) => match config {
-                ClusterConfig::Auth(auth) => panic!("{}", auth.username),
-            },
-            Err(err) => {
-                panic!("{}", err);
-            }
-        }
+        assert!(config.is_ok())
+    }
+
+    #[test]
+    fn can_parse_incorrect_config() {
+        let config = parse(
+            "
+something
+",
+        );
+
+        assert!(config.is_err());
+    }
+
+    #[test]
+    fn can_parse_unknown_kind() {
+        let config = parse(
+            "
+kind: SomeUnknownKind
+",
+        );
+
+        assert!(config.is_err());
     }
 }

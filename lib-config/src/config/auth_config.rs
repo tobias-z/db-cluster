@@ -8,4 +8,5 @@ pub struct AuthConfig {
 pub struct UserCredentials {
     pub username: Option<String>,
     pub password: Option<String>,
+    pub token: Option<String>,
 }
