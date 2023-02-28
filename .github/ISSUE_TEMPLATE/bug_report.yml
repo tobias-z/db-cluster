@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a problem with DB Management
+description: Report a problem with DB Cluster
 labels: [bug]
 body:
   - type: textarea
@@ -16,7 +16,7 @@ body:
       required: true
   - type: input
     attributes:
-      label: "DB Management version"
+      label: "DB Cluster version"
       description: "branch or release version"
       placeholder: "release 0.1.2"
     validations:
