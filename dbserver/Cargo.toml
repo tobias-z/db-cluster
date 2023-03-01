@@ -1,0 +1,12 @@
+[package]
+name = "dbserver"
+version = "0.1.0"
+authors = ["Tobias Zimmermann <tobias.zimmer007@gmail.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.1.8", features = ["derive"] }
+fork = "0.1.20"
+lib_config = { path = "../lib-config" }
