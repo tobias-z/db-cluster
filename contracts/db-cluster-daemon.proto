@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package db_cluster.proto.daemon;
+
+service ServerManagement {
+    rpc init (InitRequest) returns (InitResponse);
+}
+
+message InitRequest {
+    string config = 1;
+}
+
+message InitResponse {
+    string responseMessage = 1;
+}
