@@ -35,6 +35,12 @@ jobs:
           command: clippy
           args: --workspace
 
+      - name: Run format check
+        uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --check
+
       - name: Run cargo build
         uses: actions-rs/cargo@v1
         with:

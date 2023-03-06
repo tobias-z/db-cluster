@@ -1,4 +1,7 @@
-use std::{fmt::Display, path::{Path, PathBuf}};
+use std::{
+    fmt::Display,
+    path::{Path, PathBuf},
+};
 
 use clap::{Args, CommandFactory};
 use clap_complete::{generate_to, Generator, Shell};
