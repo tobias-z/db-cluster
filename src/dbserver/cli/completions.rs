@@ -1,4 +1,4 @@
-use std::{fmt::Display, path::Path};
+use std::{fmt::Display, path::{Path, PathBuf}};
 
 use clap::{Args, CommandFactory};
 use clap_complete::{generate_to, Generator, Shell};
@@ -36,22 +36,24 @@ pub struct CompletionArgs {
 impl DBServerCommand for CompletionArgs {
     fn execute(self) {
         let mut cmd = DBServerArgs::command();
-        let path = self.outdir.unwrap_or_else(|| env!("PWD").to_string());
-        let outdir = std::path::Path::new(&path);
+        let outdir = match self.outdir {
+            Some(path) => PathBuf::from(path),
+            None => std::env::current_dir().unwrap(),
+        };
         if self.bash {
-            generate_completions(Shell::Bash, &mut cmd, outdir);
+            generate_completions(Shell::Bash, &mut cmd, outdir.as_path());
         }
         if self.zsh {
-            generate_completions(Shell::Zsh, &mut cmd, outdir);
+            generate_completions(Shell::Zsh, &mut cmd, outdir.as_path());
         }
         if self.fish {
-            generate_completions(Shell::Fish, &mut cmd, outdir);
+            generate_completions(Shell::Fish, &mut cmd, outdir.as_path());
         }
         if self.powershell {
-            generate_completions(Shell::PowerShell, &mut cmd, outdir);
+            generate_completions(Shell::PowerShell, &mut cmd, outdir.as_path());
         }
         if self.elvish {
-            generate_completions(Shell::Elvish, &mut cmd, outdir);
+            generate_completions(Shell::Elvish, &mut cmd, outdir.as_path());
         }
     }
 }
