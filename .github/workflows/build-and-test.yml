@@ -20,7 +20,7 @@ jobs:
 
       - name: Install protoc
         shell: bash
-        run: sudo apt-get install protobuf-compiler
+        run: sudo apt install protobuf-compiler libprotobuf-dev -y
 
       - name: Install rust stable
         uses: actions-rs/toolchain@v1
