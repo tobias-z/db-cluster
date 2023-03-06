@@ -11,5 +11,5 @@ message InitRequest {
 }
 
 message InitResponse {
-    string responseMessage = 1;
+    string joinToken = 1;
 }

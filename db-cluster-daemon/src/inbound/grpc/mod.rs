@@ -1,21 +1,23 @@
+mod server_management;
+
+use std::sync::Arc;
+
 use tonic::transport::Server;
 
-use crate::AppSender;
+use crate::daemon::Daemon;
 
 use self::{
     proto::server_management_server::ServerManagementServer,
     server_management::ServerManagementController,
 };
 
-pub mod server_management;
-
 mod proto {
     tonic::include_proto!("db_cluster.proto.daemon");
 }
 
-pub async fn start_grpc_server(sender: AppSender) {
+pub async fn start_grpc_server(daemon: Arc<Daemon>) {
     let addr = "[::1]:7888".parse().unwrap();
-    let server_management = ServerManagementServer::new(ServerManagementController::new(sender));
+    let server_management = ServerManagementServer::new(ServerManagementController::new(daemon));
     let server = Server::builder()
         .add_service(server_management)
         .serve(addr)

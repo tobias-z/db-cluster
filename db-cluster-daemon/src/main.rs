@@ -3,20 +3,27 @@
 //  - Some kind of event loop?
 // - actions like making this an admin node, joining an admin node
 
-use std::sync::{mpsc::{channel, Receiver, Sender}, Arc, Mutex};
+use crate::daemon::Daemon;
+use std::sync::{
+    mpsc::{channel, Receiver, Sender},
+    Arc, Mutex,
+};
 
-use application::start_grpc_server;
+use inbound::{
+    event::{start_defered_events_loop, DaemonEvent},
+    grpc::start_grpc_server,
+};
 
-pub mod application;
-pub mod event_loop;
+pub mod daemon;
+pub mod inbound;
 
-pub type AppSender = Arc<Mutex<Sender<String>>>;
-pub type AppReceiver = Receiver<String>;
+pub type AppNotifier = Arc<Mutex<Sender<DaemonEvent>>>;
+pub type AppReceiver = Receiver<DaemonEvent>;
 
 #[tokio::main]
 async fn main() {
-    let (sender, receiver) = channel::<String>();
-    let sender = Arc::new(Mutex::new(sender));
-    tokio::spawn(start_grpc_server(Arc::clone(&sender)));
-    event_loop::start_event_loop(Arc::clone(&sender), receiver);
+    let (notifier, receiver) = channel::<DaemonEvent>();
+    let daemon = Arc::new(Daemon::new(Arc::new(Mutex::new(notifier))));
+    tokio::spawn(start_grpc_server(Arc::clone(&daemon)));
+    start_defered_events_loop(Arc::clone(&daemon), receiver);
 }
