@@ -30,8 +30,6 @@ impl ServerManagement for ServerManagementController {
         if state.set_join_token(Some(join_token.clone())).is_err() {
             return Err(Status::internal("Unable to keep the system up to date"));
         }
-        Ok(Response::new(InitResponse {
-            join_token,
-        }))
+        Ok(Response::new(InitResponse { join_token }))
     }
 }

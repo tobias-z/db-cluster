@@ -2,7 +2,7 @@ use serde::de::DeserializeOwned;
 
 use crate::{
     config::{auth_config::AuthConfig, ClusterConfig},
-    error::{ConfigResult, self},
+    error::{self, ConfigResult},
 };
 
 #[derive(serde::Deserialize)]

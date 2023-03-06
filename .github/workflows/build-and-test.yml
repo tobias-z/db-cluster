@@ -18,6 +18,10 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
+      - name: Install protoc
+        shell: bash
+        run: sudo apt-get install protobuf-compiler
+
       - name: Install rust stable
         uses: actions-rs/toolchain@v1
         with:

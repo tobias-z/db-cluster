@@ -1,4 +1,4 @@
-use std::{path::Path, fmt::Display};
+use std::{fmt::Display, path::Path};
 
 use clap::{Args, CommandFactory};
 use clap_complete::{generate_to, Generator, Shell};
@@ -63,6 +63,9 @@ where
     let generator = gen.to_string();
     if let Err(err) = generate_to(gen, cmd, cmd.get_name().to_string(), outdir) {
         let path = outdir.to_str().unwrap_or("");
-        println!("unable to generate completions for {} at path {} \nFull error: {}", generator, path, err);
+        println!(
+            "unable to generate completions for {} at path {} \nFull error: {}",
+            generator, path, err
+        );
     }
 }
