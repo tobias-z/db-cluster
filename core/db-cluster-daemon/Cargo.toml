@@ -9,7 +9,7 @@ edition = "2021"
 tonic = "0.8.3"
 prost = "0.11.8"
 tokio = { version = "1.26.0", features = ["full"] }
-lib-auth = { path = "../lib-auth" }
+auth = { path = "../../libs/auth" }
 
 [build-dependencies]
 tonic-build = "0.8.4"

@@ -25,7 +25,7 @@ impl ServerManagementController {
 impl ServerManagement for ServerManagementController {
     async fn init(&self, _: Request<InitRequest>) -> Result<Response<InitResponse>, Status> {
         // TODO: What kind of config should we require here?
-        let join_token = lib_auth::token::generate_join_token();
+        let join_token = auth::token::generate_join_token();
         let mut state = self.daemon.desired_state.lock().unwrap();
         if state.set_join_token(Some(join_token.clone())).is_err() {
             return Err(Status::internal("Unable to keep the system up to date"));
