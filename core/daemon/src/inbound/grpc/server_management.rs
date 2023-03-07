@@ -1,10 +1,7 @@
-use std::sync::Arc;
-
-use tonic::{Request, Response, Status};
-
-use crate::daemon::Daemon;
-
 use super::proto::{server_management_server::ServerManagement, InitRequest, InitResponse};
+use crate::daemon::Daemon;
+use std::sync::Arc;
+use tonic::{Request, Response, Status};
 
 pub struct ServerManagementController {
     daemon: Arc<Daemon>,

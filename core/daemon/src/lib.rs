@@ -4,14 +4,13 @@
 // - actions like making this an admin node, joining an admin node
 
 use crate::daemon::Daemon;
-use std::sync::{
-    mpsc::{channel, Receiver, Sender},
-    Arc, Mutex,
-};
-
 use inbound::{
     event::{start_defered_events_loop, DaemonEvent},
     grpc::start_grpc_server,
+};
+use std::sync::{
+    mpsc::{channel, Receiver, Sender},
+    Arc, Mutex,
 };
 
 pub mod daemon;
@@ -21,7 +20,7 @@ pub type AppNotifier = Arc<Mutex<Sender<DaemonEvent>>>;
 pub type AppReceiver = Receiver<DaemonEvent>;
 
 #[tokio::main]
-async fn main() {
+pub async fn run() {
     let (notifier, receiver) = channel::<DaemonEvent>();
     let daemon = Arc::new(Daemon::new(Arc::new(Mutex::new(notifier))));
     tokio::spawn(start_grpc_server(Arc::clone(&daemon)));

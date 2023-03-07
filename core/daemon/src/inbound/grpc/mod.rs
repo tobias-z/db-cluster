@@ -1,15 +1,12 @@
 mod server_management;
 
-use std::sync::Arc;
-
-use tonic::transport::Server;
-
-use crate::daemon::Daemon;
-
 use self::{
     proto::server_management_server::ServerManagementServer,
     server_management::ServerManagementController,
 };
+use crate::daemon::Daemon;
+use std::sync::Arc;
+use tonic::transport::Server;
 
 mod proto {
     tonic::include_proto!("db_cluster.proto.daemon");

@@ -185,16 +185,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "db-cluster"
-version = "0.1.0"
-dependencies = [
- "clap",
- "clap_complete",
- "config",
-]
-
-[[package]]
-name = "db_cluster_daemon"
+name = "daemon"
 version = "0.1.0"
 dependencies = [
  "auth",
@@ -202,6 +193,16 @@ dependencies = [
  "tokio",
  "tonic",
  "tonic-build",
+]
+
+[[package]]
+name = "db-cluster"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "clap_complete",
+ "config",
+ "daemon",
 ]
 
 [[package]]

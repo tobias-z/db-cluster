@@ -1,6 +1,5 @@
-use std::sync::Arc;
-
 use crate::{daemon::Daemon, AppReceiver};
+use std::sync::Arc;
 
 pub enum DaemonEvent {
     JoinTokenChanged(Option<String>, Option<String>),

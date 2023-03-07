@@ -9,6 +9,7 @@ edition = "2021"
 clap = { version = "4.1.8", features = ["derive"] }
 clap_complete = "4.1.4"
 config = { path = "libs/config"}
+daemon = { path = "core/daemon"}
 
 [[bin]]
 name = "dbctl"
@@ -18,9 +19,13 @@ path = "src/dbctl/main.rs"
 name = "dbserver"
 path = "src/dbserver/main.rs"
 
+[[bin]]
+name = "db-cluster-daemon"
+path = "src/db-cluster-daemon/main.rs"
+
 [workspace]
 members = [
-    "core/db-cluster-daemon",
+    "core/daemon",
     "libs/auth",
     "libs/config",
 ]

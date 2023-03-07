@@ -1,8 +1,7 @@
 mod node;
 
-use std::sync::{Arc, Mutex};
-
 use crate::{inbound::event::DaemonEvent, AppNotifier};
+use std::sync::{Arc, Mutex};
 
 pub type AppState = Arc<Mutex<DesiredState>>;
 
