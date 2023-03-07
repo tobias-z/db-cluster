@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: cargo
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: cargo
+    directory: /core/daemon
+    schedule:
+      interval: daily
+
+  - package-ecosystem: cargo
+    directory: /libs/auth
+    schedule:
+      interval: daily
+
+  - package-ecosystem: cargo
+    directory: /libs/config
+    schedule:
+      interval: daily
