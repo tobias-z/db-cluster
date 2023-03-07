@@ -1,9 +1,8 @@
-use serde::de::DeserializeOwned;
-
 use crate::{
     config::{auth_config::AuthConfig, ClusterConfig},
     error::{self, ConfigResult},
 };
+use serde::de::DeserializeOwned;
 
 #[derive(serde::Deserialize)]
 struct DefaultConfig {

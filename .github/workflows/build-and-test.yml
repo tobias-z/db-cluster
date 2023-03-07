@@ -12,9 +12,11 @@ jobs:
       - name: Setup rust
         uses: ./.github/actions/setup-rust
 
+      - uses: taiki-e/install-action@nextest
+
       - name: Run cargo test
         shell: bash
-        run: cargo test --workspace
+        run: cargo nextest run --workspace
   check:
     name: Check
     runs-on: ubuntu-latest

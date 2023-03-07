@@ -1,6 +1,5 @@
-use clap::Args;
-
 use crate::cli::DBServerCommand;
+use clap::Args;
 
 #[derive(Args, Debug)]
 pub struct InitArgs {

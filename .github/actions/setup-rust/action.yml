@@ -15,11 +15,13 @@ runs:
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
     - name: Install rust stable
-      uses: actions-rs/toolchain@v1
+      uses: dtolnay/rust-toolchain@stable
       with:
           toolchain: stable
           override: true
           components: rustfmt, clippy
+
+    - uses: taiki-e/install-action@nextest
 
     - name: Install protoc
       shell: bash

@@ -1,9 +1,8 @@
 pub mod completions;
 pub mod init;
 
-use clap::{Parser, Subcommand};
-
 use crate::cli::{completions::CompletionArgs, init::InitArgs};
+use clap::{Parser, Subcommand};
 
 // TODO: Ensure that we have good messages
 

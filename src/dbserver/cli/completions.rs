@@ -1,12 +1,10 @@
+use crate::cli::{DBServerArgs, DBServerCommand};
+use clap::{Args, CommandFactory};
+use clap_complete::{generate_to, Generator, Shell};
 use std::{
     fmt::Display,
     path::{Path, PathBuf},
 };
-
-use clap::{Args, CommandFactory};
-use clap_complete::{generate_to, Generator, Shell};
-
-use crate::cli::{DBServerArgs, DBServerCommand};
 
 #[derive(Args, Debug)]
 pub struct CompletionArgs {

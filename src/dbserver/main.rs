@@ -1,6 +1,5 @@
-use clap::Parser;
-
 use crate::cli::DBServerArgs;
+use clap::Parser;
 
 pub mod cli;
 
