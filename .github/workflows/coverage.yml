@@ -1,4 +1,10 @@
-on: [pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 name: coverage
 
@@ -22,14 +28,14 @@ jobs:
 
       - name: Generate coverage report
         shell: bash
-        run: cargo llvm-cov nextest --workspace --html
+        run: cargo llvm-cov nextest --all-features --workspace --lcov --output-path lcov.info
 
-      - name: Print generated report
-        id: coverage
-        run: |
-          echo "report<<EOF" >> $GITHUB_OUTPUT
-          echo "$(cat target/llvm-cov/html/index.html)" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          files: lcov.info
+          fail_ci_if_error: true
 
       - name: Send reports to PR comment
         uses: actions/github-script@v6
@@ -49,14 +55,9 @@ jobs:
             })
             // 2. Prepare format of the comment
             const output = `
-            <details><summary>Coverage Report</summary>
-
-            ---
-            ${process.env.COVERAGE}
-            ---
-
-            </details>
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.WORKING_DIR }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            The coverage has been uploaded to Codecov.
+            It can be looked at [here](https://app.codecov.io/gh/tobias-z/db-cluster)
+            *Pusher: @${{ github.actor }}*`;
             // 3. If we have a comment, update it, otherwise create a new one
             if (botComment) {
               github.rest.issues.updateComment({
