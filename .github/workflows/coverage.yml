@@ -28,7 +28,7 @@ jobs:
 
       - name: Generate coverage report
         shell: bash
-        run: cargo llvm-cov nextest --all-features --workspace --xml --output-path lcov.xml
+        run: cargo llvm-cov nextest --all-features --workspace --cobertura --output-path lcov.xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
