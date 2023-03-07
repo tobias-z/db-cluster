@@ -22,8 +22,9 @@ jobs:
       - name: Print generated report
         id: coverage
         run: |
-          report=$(cat report)
-          echo "report=$report" >> $GITHUB_OUTPUT
+          echo "report<<EOF" >> $GITHUB_OUTPUT
+          echo "$(cat report)" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Send reports to PR comment
         uses: actions/github-script@v6
