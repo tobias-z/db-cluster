@@ -22,13 +22,13 @@ jobs:
 
       - name: Generate coverage report
         shell: bash
-        run: cargo llvm-cov nextest --workspace --output-path report
+        run: cargo llvm-cov nextest --workspace --html
 
       - name: Print generated report
         id: coverage
         run: |
           echo "report<<EOF" >> $GITHUB_OUTPUT
-          echo "$(cat report)" >> $GITHUB_OUTPUT
+          echo "$(cat target/llvm-cov/html/index.html)" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Send reports to PR comment
@@ -50,9 +50,11 @@ jobs:
             // 2. Prepare format of the comment
             const output = `
             <details><summary>Coverage Report</summary>
+
             ---
             ${process.env.COVERAGE}
             ---
+
             </details>
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.WORKING_DIR }}\`, Workflow: \`${{ github.workflow }}\`*`;
             // 3. If we have a comment, update it, otherwise create a new one
