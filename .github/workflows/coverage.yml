@@ -28,11 +28,11 @@ jobs:
 
       - name: Generate coverage report
         shell: bash
-        run: cargo llvm-cov nextest --all-features --workspace --lcov --output-path lcov.info
+        run: cargo llvm-cov nextest --all-features --workspace --xml --output-path lcov.xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          files: lcov.info
+          files: lcov.xml
           fail_ci_if_error: true
