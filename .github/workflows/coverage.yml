@@ -6,6 +6,11 @@ jobs:
   coverage-report:
     name: Coverage Report
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
 
