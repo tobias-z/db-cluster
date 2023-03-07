@@ -2,7 +2,8 @@
 
 # DB Cluster
 
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/tobias-z/db-cluster/badge)](https://api.securityscorecards.dev/projects/github.com/tobias-z/db-cluster)
+[![openssf scorecard](https://api.securityscorecards.dev/projects/github.com/tobias-z/db-cluster/badge)](https://api.securityscorecards.dev/projects/github.com/tobias-z/db-cluster)
+[![codecov](https://codecov.io/gh/tobias-z/db-cluster/branch/main/graph/badge.svg?token=FIA5TUP1GA)](https://codecov.io/gh/tobias-z/db-cluster)
 
 </div>
 
