@@ -2,6 +2,9 @@ on: [push]
 
 name: build-and-test
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Test
