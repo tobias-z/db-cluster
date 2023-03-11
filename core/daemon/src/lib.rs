@@ -3,26 +3,25 @@
 //  - Some kind of event loop?
 // - actions like making this an admin node, joining an admin node
 
+use std::sync::Arc;
+
 use crate::daemon::Daemon;
+use crossbeam_channel::{Receiver, Sender};
 use inbound::{
     event::{start_defered_events_loop, DaemonEvent},
     grpc::start_grpc_server,
-};
-use std::sync::{
-    mpsc::{channel, Receiver, Sender},
-    Arc, Mutex,
 };
 
 pub mod daemon;
 pub mod inbound;
 
-pub type AppNotifier = Arc<Mutex<Sender<DaemonEvent>>>;
+pub type AppSender = Sender<DaemonEvent>;
 pub type AppReceiver = Receiver<DaemonEvent>;
 
 #[tokio::main]
 pub async fn run() {
-    let (notifier, receiver) = channel::<DaemonEvent>();
-    let daemon = Arc::new(Daemon::new(Arc::new(Mutex::new(notifier))));
+    let (sender, receiver) = crossbeam_channel::unbounded();
+    let daemon = Arc::new(Daemon::new(sender));
     tokio::spawn(start_grpc_server(Arc::clone(&daemon)));
     start_defered_events_loop(Arc::clone(&daemon), receiver);
 }

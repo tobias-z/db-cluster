@@ -6,10 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+auth = { path = "../../libs/auth" }
 tonic = "0.8.3"
 prost = "0.11.8"
 tokio = { version = "1.26.0", features = ["full"] }
-auth = { path = "../../libs/auth" }
+crossbeam-channel = "0.5.7"
 
 [build-dependencies]
 tonic-build = "0.8.4"
