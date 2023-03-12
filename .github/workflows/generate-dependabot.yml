@@ -5,6 +5,10 @@ on:
   repository_dispatch:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   generate:
     name: Generate dependabot.yml
