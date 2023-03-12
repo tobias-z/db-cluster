@@ -8,15 +8,6 @@ readme = "README.md"
 repository = "https://github.com/tobias-z/db-cluster"
 edition = "2021"
 
-[licenses]
-allow = [
-    "Apache-2.0",
-    "MIT"
-]
-
-[licenses.private]
-ignore = true
-
 [dependencies]
 clap = { version = "4.1.8", features = ["derive"] }
 clap_complete = "4.1.4"
