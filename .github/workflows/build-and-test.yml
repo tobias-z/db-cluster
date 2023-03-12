@@ -61,5 +61,5 @@ jobs:
       - name: Run dependabot check
         shell: bash
         run: |
-          cargo install --path ./hack/dependabot
+          cargo install --path ./hack/dependabot --quiet
           dependabot check
