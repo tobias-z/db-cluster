@@ -21,7 +21,7 @@ updates:
     schedule:
       interval: weekly
 
-  - package-ecosystem: cargo
-    directory: /libs/config
-    schedule:
-      interval: weekly
+  # - package-ecosystem: cargo
+  #   directory: /libs/config
+  #   schedule:
+  #     interval: weekly
