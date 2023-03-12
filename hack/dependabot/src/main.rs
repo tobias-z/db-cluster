@@ -36,7 +36,7 @@ fn check_config() {
     };
     if new_config.unwrap() != old_config {
         eprintln!(
-            "The dependabot config is not up to date. Please run 'dependabot create' to update it."
+            "The dependabot config is not up to date. Please run 'cargo install --path ./hack/dependabot && dependabot create' to update it."
         );
         std::process::exit(1);
     }
