@@ -57,3 +57,6 @@ jobs:
       - name: Run format check
         shell: bash
         run: cargo fmt --check
+
+      - name: Run Cargo Deny
+        uses: EmbarkStudios/cargo-deny-action@v1
