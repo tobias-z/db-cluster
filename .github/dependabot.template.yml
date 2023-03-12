@@ -7,7 +7,7 @@ updates:
     open-pull-requests-limit: 10
 
   - package-ecosystem: cargo
-    directory: "Cargo.toml"
+    directory: "./**/Cargo.toml"
     schedule:
       interval: weekly
 
