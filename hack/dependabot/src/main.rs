@@ -3,9 +3,7 @@ use serde_yaml::Value;
 
 use clap::{Parser, Subcommand};
 
-// TODO: Ensure that we have good messages
-
-/// DBServer help about message
+/// Used to manage dependabot configurations
 #[derive(Parser, Debug)]
 #[command(author, version, about)]
 pub struct Args {
@@ -15,7 +13,9 @@ pub struct Args {
 
 #[derive(Subcommand, Debug)]
 pub enum Command {
+    /// Check if the configuration is up to date with your current file system
     Check,
+    /// Creates the dependabot.yml file according to your current file system.
     Create,
 }
 
