@@ -14,6 +14,7 @@ use inbound::{
 
 pub mod daemon;
 pub mod inbound;
+pub mod container;
 
 pub type AppSender = Sender<DaemonEvent>;
 pub type AppReceiver = Receiver<DaemonEvent>;

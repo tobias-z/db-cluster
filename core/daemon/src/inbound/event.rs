@@ -48,7 +48,7 @@ impl JoinTokenChanged {
 impl DaemonEventCommand for JoinTokenChanged {
     fn execute(&self, daemon: &Daemon) {
         if self.old_token.is_none() && self.new_token.is_some() {
-            daemon.init_as_admin(self.new_token.as_ref().unwrap());
+            daemon.init_as_admin();
         }
     }
 }

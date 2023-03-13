@@ -3,6 +3,7 @@ mod node;
 use crossbeam_channel::SendError;
 
 use crate::{
+    container::{docker_runtime::DockerRuntime, runtime::ContainerRuntime},
     inbound::event::{DaemonEvent, JoinTokenChanged},
     AppSender,
 };
@@ -13,12 +14,15 @@ pub type AppState = Arc<Mutex<DesiredState>>;
 pub struct Daemon {
     pub desired_state: AppState,
     pub sender: AppSender,
+    pub container_runtime: Arc<Box<dyn ContainerRuntime + Send + Sync>>,
 }
+
 impl Daemon {
     pub fn new(sender: AppSender) -> Self {
         Self {
             desired_state: Arc::new(Mutex::new(DesiredState::new(sender.clone()))),
             sender,
+            container_runtime: Arc::new(Box::<DockerRuntime>::default()),
         }
     }
 }
