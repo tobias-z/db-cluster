@@ -9,7 +9,7 @@ repository = "https://github.com/tobias-z/db-cluster"
 edition = "2021"
 
 [dependencies]
-clap = { version = "4.1.8", features = ["derive"] }
+clap = { version = "4.1.13", features = ["derive"] }
 clap_complete = "4.1.4"
 config = { path = "libs/config"}
 daemon = { path = "core/daemon"}
