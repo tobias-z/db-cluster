@@ -10,7 +10,7 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.1.8", features = ["derive"] }
-clap_complete = "4.1.4"
+clap_complete = "4.2.3"
 config = { path = "libs/config"}
 daemon = { path = "core/daemon"}
 
